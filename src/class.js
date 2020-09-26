@@ -36,6 +36,9 @@ class Timer {
         function asyncStudyRestCountdown(study,rest,cycle){
             asyncCountdown(study).then(response => {
                 return asyncCountdown(rest);
+            },
+            error => {
+                console.log('カウントダウン終了');
             }).then(response => {
                 console.log(cycle + 'サイクル終了');
                 cycle++;

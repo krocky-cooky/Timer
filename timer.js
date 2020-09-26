@@ -20,7 +20,9 @@ var timerList = [];
 
 
 (function () {
-    timerList = timerStorage.fetch();
+    timerStorage.fetch().forEach(element => {
+        timerList.push(new Timer(element.study,element.rest,element.id));
+    });
     
     var currentTimeElement = document.getElementById('currentTime');
     setInterval(() => {
@@ -38,13 +40,19 @@ var timerList = [];
     for(var i = 0; i < timerList.length; ++i){
         var study = timerList[i].study;
         var rest = timerList[i].rest;
-        appendTable(study,rest);
+        var id = timerList[i].id;
+        appendTable(study,rest,id);
     }
 
-    function appendTable(study,rest) {
+    function appendTable(study,rest,id) {
         var new_tr = document.createElement('tr');
         var study_td = document.createElement('td');
         var rest_td = document.createElement('td');
+        var button_td = document.createElement('td');
+        var button = document.createElement('button');
+        var text = String(id);
+        button.id = text;
+        button.attr = 1;
         
         study_td.appendChild(
             document.createTextNode(String(study) + '分')
@@ -52,9 +60,25 @@ var timerList = [];
         rest_td.appendChild(
             document.createTextNode(String(rest) + '分')
         );
+        button.appendChild(
+            document.createTextNode('開始')
+        );
+        button_td.appendChild(button);
         new_tr.appendChild(study_td);
         new_tr.appendChild(rest_td);
+        new_tr.appendChild(button_td);
         document.getElementById('study-rest-time').appendChild(new_tr);
+        button.addEventListener('click',function(){
+            if(this.attr === 1){
+                console.log(this.id);
+                timerList[Number(this.id)].startCount();
+                this.attr = 0;
+            }else{
+                console.log('停止プロセス');
+                timerList[Number(this.id)].stopCount();
+                this.attr = 1;
+            }
+        })
     }
 
     function createInstance(study, rest) {
@@ -82,7 +106,7 @@ var timerList = [];
     }
 
 
-    
+
 
     document.getElementById('confirm-button').addEventListener('click',function(){
         createButton();

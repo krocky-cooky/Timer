@@ -8,7 +8,7 @@ class Timer {
     }
 
     getTime(){
-        var str = '勉強時間: ' + String(this.study) + '分 ' + '休憩時間: ' +  String(this.rest) + '秒';
+        var str = '勉強時間: ' + String(this.study) + '分 ' + '休憩時間: ' +  String(this.rest) + '分';
         return str;
     }
     startCount(){
@@ -41,6 +41,9 @@ class Timer {
             }).then(response => {
                 console.log(cycle + 'サイクル終了');
                 cycle++;
+                var cycleElement = document.getElementById('cycle-count');
+                cycleElement.innerHTML = '<h1>' + String(cycle) + '</h1>';
+                
                 asyncStudyRestCountdown(study,rest,cycle);
             },
             error => {
@@ -48,7 +51,7 @@ class Timer {
             })
         }
 
-        var cycle = 0;
+        var cycle = 1;
         var study = this.study;
         var rest = this.rest;
         study *=  this.minute;
@@ -78,18 +81,20 @@ class Timer {
         }
         var studyElement = document.getElementById('study-time');
         var restElement = document.getElementById('rest-time');
+
+        
         if(flag){
-            studyElement.innerHTML = "";
-            studyElement.appendChild(
-                document.createTextNode('<h1>' + culcTime(second) + '</h1>')
-            )
+            studyElement.innerHTML = '<h1>' + culcTime(second) + '</h1>';
         }else{
-            restElement.innerHTML = "";
-            restElement.appendChild(
-                document.createTextNode('<h1>' + culcTime(second) + '</h1>')
-            )
+            restElement.innerHTML = '<h1>' + culcTime(second) + '</h1>';
         }
         
+    }
+    setTimer(){
+        this.printCount(this.study*this.minute,true);
+        this.printCount(this.rest*this.minute,false);
+        document.getElementById('cycle-count').innerHTML = '<h1>' + 1 + '</h1>';
+
     }
 
 

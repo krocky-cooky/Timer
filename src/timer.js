@@ -68,16 +68,12 @@ var timerList = [];
         new_tr.appendChild(rest_td);
         new_tr.appendChild(button_td);
         document.getElementById('study-rest-time').appendChild(new_tr);
-        button.addEventListener('click',function(){
-            if(this.attr === 1){
-                console.log(this.id);
-                timerList[Number(this.id)].startCount();
-                document.getElementById('modal-base').style.display = "block";
-                this.attr = 0;
-            }else{
-                timerList[Number(this.id)].stopCount();
-                this.attr = 1;
-            }
+        button.addEventListener('click',function(){           
+            timerList[Number(this.id)].setTimer();
+            timerList[Number(this.id)].startCount();
+            document.getElementById('modal-base').style.display = "block";
+            this.attr = 0;
+            
         })
     }
 
@@ -87,14 +83,10 @@ var timerList = [];
         var id = timerStorage.uid || 0;
         console.log(id);
         var timer = new Timer(num_stu,num_res,id);
-        timerList.push({
-            "id": id,
-            "study": num_stu,
-            "rest": num_res
-        });
+        timerList.push(timer);
         timerStorage.save(timerList);
         console.log(timer.getTime());
-        appendTable(num_stu,num_res);
+        appendTable(num_stu,num_res,id);
 
     }
 
@@ -104,6 +96,12 @@ var timerList = [];
        createInstance(study,rest);
 
     }
+
+    document.getElementById('close-button').addEventListener('click',function(){
+        document.getElementById('modal-base').style.display = "none";
+
+    })
+
     document.getElementById('stop-button').addEventListener('click',function(){
         timerList.forEach((elem) => {
             if(elem.state === 1){

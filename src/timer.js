@@ -72,9 +72,9 @@ var timerList = [];
             if(this.attr === 1){
                 console.log(this.id);
                 timerList[Number(this.id)].startCount();
+                document.getElementById('modal-base').style.display = "block";
                 this.attr = 0;
             }else{
-                console.log('停止プロセス');
                 timerList[Number(this.id)].stopCount();
                 this.attr = 1;
             }
@@ -104,9 +104,13 @@ var timerList = [];
        createInstance(study,rest);
 
     }
-
-
-
+    document.getElementById('stop-button').addEventListener('click',function(){
+        timerList.forEach((elem) => {
+            if(elem.state === 1){
+                elem.stopCount();
+            }
+        })
+    })
 
     document.getElementById('confirm-button').addEventListener('click',function(){
         createButton();

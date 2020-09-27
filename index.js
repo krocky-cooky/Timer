@@ -5,7 +5,8 @@ let win;
 function createWindow() {
     win = new BrowserWindow(
         {
-            fullscreem: true
+            width: 2000,
+            height: 1500
         }
     );
     win.webContents.openDevTools();

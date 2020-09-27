@@ -4,9 +4,36 @@
 <head>
     <meta charset="utf-8">
     <title>timeManagement application</title>
+    <link rel="stylesheet" href="style/css/bootstrap.css">
+    <link rel="stylesheet" href="style/css/style.css">
+    <script type="text/javascript" src="style/js/jquery-3.5.1.js"></script>
+    <script type="text/javascript" src="style/js/bootstrap.js"></script>
 </head>
 
 <body>
+    <div id="modal-base">
+        <div id="modal-content">
+            <div id="button-container-1">
+                <button id="close-button">閉じる</button>
+            </div>
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <td><h3>勉強時間</h3></td>
+                        <td id="study-time"></td>
+                    </tr>
+                    <tr>
+                        <td><h3>休憩時間</h3></td>
+                        <td id="rest-time"></td>
+                    </tr>
+                </tbody>
+            </table>
+            <div id="cycle-container"></div>
+            <div id="button-container-2">
+                <button id="stop-button">ストップ</button>
+            </div>
+        </div>
+    </div>
     <h1>time manage App</h1>
     <div id="timer">
         <div id="currentTime"></div>

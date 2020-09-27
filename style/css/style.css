@@ -1,0 +1,31 @@
+#modal-base {
+    background-color: blue;
+    position: absolute;
+    height:100%;
+    width:100%;
+    top:0;
+    left:0;
+    z-index:100;
+    display:none;
+}
+#modal-content {
+    padding: 0 5%;
+    position:absolute;
+    background-color: white;
+    height: 80%;
+    width: 80%;
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+    border-radius:5px;
+}
+
+#button-container-1 {
+    text-align : right;
+    margin:10px 0;
+
+}
+#button-container-2{
+    text-align: center;
+    margin : 10px 0;
+}

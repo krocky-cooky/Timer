@@ -4,6 +4,7 @@ class Timer {
         this.rest = rest;
         this.id = id;
         this.state = 0;
+        this.minute = 10;
     }
 
     getTime(){
@@ -15,7 +16,7 @@ class Timer {
 
         var self = this;
 
-        function asyncCountdown(study){
+        function asyncCountdown(study,flag){
             return new Promise((resolve,reject) => {
                 var timer = setInterval(() => {
                     if(self.state === 0){
@@ -23,6 +24,7 @@ class Timer {
                         reject();
                     }else{
                         study--;
+                        self.printCount(study,flag);
                         console.log('残り' + String(study));
                         if(study === 0){
                             clearInterval(timer);
@@ -34,11 +36,8 @@ class Timer {
         }
 
         function asyncStudyRestCountdown(study,rest,cycle){
-            asyncCountdown(study).then(response => {
-                return asyncCountdown(rest);
-            },
-            error => {
-                console.log('カウントダウン終了');
+            asyncCountdown(study,true).then(response => {
+                return asyncCountdown(rest,false);
             }).then(response => {
                 console.log(cycle + 'サイクル終了');
                 cycle++;
@@ -52,8 +51,8 @@ class Timer {
         var cycle = 0;
         var study = this.study;
         var rest = this.rest;
-        study *= 10;
-        rest *= 10;
+        study *=  this.minute;
+        rest *= this.minute;
         asyncStudyRestCountdown(study,rest,cycle);
         
         console.log('終了');
@@ -61,6 +60,38 @@ class Timer {
     stopCount(){
         this.state = 0;
     }
-    
+    printCount(second,flag){
+        var self = this;
+        function culcTime(second){
+            if(second === 0){
+                if(flag){
+                    second = self.study*self.minute;
+                }else{
+                    second = self.rest*self.minute;
+                }
+            }
+            var sec = String(second%60);
+            var min = String((second-sec)/60);
+            sec = ('00' + sec).slice(-2);
+            var str = min + ' : ' + sec;
+            return str;
+        }
+        var studyElement = document.getElementById('study-time');
+        var restElement = document.getElementById('rest-time');
+        if(flag){
+            studyElement.innerHTML = "";
+            studyElement.appendChild(
+                document.createTextNode('<h1>' + culcTime(second) + '</h1>')
+            )
+        }else{
+            restElement.innerHTML = "";
+            restElement.appendChild(
+                document.createTextNode('<h1>' + culcTime(second) + '</h1>')
+            )
+        }
+        
+    }
+
+
     
 }

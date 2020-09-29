@@ -4,7 +4,7 @@ class Timer {
         this.rest = rest;
         this.id = id;
         this.state = 0;
-        this.minute = 10;
+        this.minute = 60;
     }
 
     getTime(){
@@ -62,6 +62,10 @@ class Timer {
     }
     stopCount(){
         this.state = 0;
+        document.getElementById('close-button').addEventListener('click',function(){
+            document.getElementById('modal-base').style.display = "none";
+    
+        });
     }
     printCount(second,flag){
         var self = this;

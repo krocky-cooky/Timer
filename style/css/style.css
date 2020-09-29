@@ -1,5 +1,5 @@
 #modal-base {
-    background-color: blue;
+    background : rgba(0,0,255,0.7);
     position: absolute;
     height:100%;
     width:100%;
@@ -28,4 +28,7 @@
 #button-container-2{
     text-align: center;
     margin : 10px 0;
+}
+
+#close-button {
 }

@@ -97,10 +97,7 @@ var timerList = [];
 
     }
 
-    document.getElementById('close-button').addEventListener('click',function(){
-        document.getElementById('modal-base').style.display = "none";
-
-    })
+    
 
     document.getElementById('stop-button').addEventListener('click',function(){
         timerList.forEach((elem) => {

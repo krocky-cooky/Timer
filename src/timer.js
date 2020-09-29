@@ -63,6 +63,7 @@ var timerList = [];
         button.appendChild(
             document.createTextNode('開始')
         );
+        button.classList.add('btn','btn-primary');
         button_td.appendChild(button);
         new_tr.appendChild(study_td);
         new_tr.appendChild(rest_td);

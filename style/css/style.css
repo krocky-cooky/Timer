@@ -53,3 +53,15 @@ th {
 #table-container {
     border-radius : 2px;
 }
+
+.flex{
+    display : flex;
+}
+
+.flex-left{
+    flex-basis : 60%;
+    text-align : right;
+}
+.flex-right{
+    margin-left : 5px;
+}

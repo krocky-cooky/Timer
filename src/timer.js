@@ -20,6 +20,7 @@ var timerList = [];
 
 
 (function () {
+    
     timerStorage.fetch().forEach(element => {
         timerList.push(new Timer(element.study,element.rest,element.id));
     });
@@ -111,6 +112,10 @@ var timerList = [];
 
     document.getElementById('confirm-button').addEventListener('click',function(e){
         e.preventDefault();
+        var n = new Notification('hello',{
+            body : 'こんな感じの通知です',
+            
+        });
         createButton();
         console.log('event');
     },false);

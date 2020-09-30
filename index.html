@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>timeManagement application</title>
+    <title>time manage App</title>
     <link rel="stylesheet" href="style/css/bootstrap.css">
     <link rel="stylesheet" href="style/css/style.css">
     <script type="text/javascript" src="style/js/jquery-3.5.1.js"></script>
@@ -38,24 +38,38 @@
             </div>
         </div>
     </div>
-    <h1>time manage App</h1>
+    <div id="outer-container">
+        <div id="innner-container">
+            <h1>time manage App</h1>
     <div id="timer">
         <div id="currentTime"></div>
     </div>
-    <input id="study" type="text">
-    <input id="rest" type="text">
-    <button id="confirm-button" class="btn btn-primary" type="button">タイマーを作成</button>
-    <table>
+    <form>
+    <h4>勉強時間: </h4>
+    <input id="study" type="text" required>
+    <h4>休憩時間: </h4>
+    <input id="rest" type="text" required>
+    <div id="create-button-container">
+    <button id="confirm-button" class="btn btn-primary" type="submit">タイマーを作成</button>
+    </div>
+    </form>
+    <div id="table-container">
+    <table class="table">
         <thead>
             <tr>
                 <th>勉強時間</th>
                 <th>休憩時間</th>
-                <th>開始</th>
+                <th>-</th>
             </tr>
         </thead>
         <tbody id="study-rest-time">
         </tbody>
     </table>
+    </div>
+        </div>
+    </div>
+    
+    
     <!--<script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>-->
     
     <script src="./src/class.js"></script>

@@ -32,3 +32,24 @@
 
 #close-button {
 }
+
+#outer-container{
+    padding : 0 10%;
+    text-align : center;
+}
+
+#inner-container{
+    padding: 20px 0;
+}
+
+#create-button-container {
+    padding-top : 5px;
+}
+
+th {
+    text-align : center;
+}
+
+#table-container {
+    border-radius : 2px;
+}

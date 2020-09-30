@@ -69,7 +69,8 @@ var timerList = [];
         new_tr.appendChild(rest_td);
         new_tr.appendChild(button_td);
         document.getElementById('study-rest-time').appendChild(new_tr);
-        button.addEventListener('click',function(){           
+        button.addEventListener('click',function(){
+           
             timerList[Number(this.id)].setTimer();
             timerList[Number(this.id)].startCount();
             document.getElementById('modal-base').style.display = "block";
@@ -108,7 +109,8 @@ var timerList = [];
         })
     })
 
-    document.getElementById('confirm-button').addEventListener('click',function(){
+    document.getElementById('confirm-button').addEventListener('click',function(e){
+        e.preventDefault();
         createButton();
         console.log('event');
     },false);

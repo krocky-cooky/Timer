@@ -18,6 +18,17 @@ class Timer {
 
         function asyncCountdown(study,flag){
             return new Promise((resolve,reject) => {
+                var studyTr = document.getElementById('study-tr');
+                var restTr = document.getElementById('rest-tr');
+                var trColor = 'bg-primary';
+                if(flag){
+                    studyTr.classList.add(trColor);
+                    restTr.classList.remove(trColor);
+                }else{
+                    restTr.classList.add(trColor);
+                    studyTr.classList.remove(trColor);
+                }
+                
                 var timer = setInterval(() => {
                     if(self.state === 0){
                         clearInterval(timer);

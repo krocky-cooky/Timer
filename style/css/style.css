@@ -1,3 +1,8 @@
+body{
+    background : url(../../picture/green.jpg) center/cover;
+    background-size : auto;
+    color : white;
+}
 #modal-base {
     background : rgba(0,0,255,0.7);
     position: absolute;

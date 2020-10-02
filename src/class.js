@@ -20,7 +20,7 @@ class Timer {
             return new Promise((resolve,reject) => {
                 var studyTr = document.getElementById('study-tr');
                 var restTr = document.getElementById('rest-tr');
-                var trColor = 'bg-primary';
+                var trColor = 'bg-success';
                 if(flag){
                     studyTr.classList.add(trColor);
                     restTr.classList.remove(trColor);
@@ -73,10 +73,12 @@ class Timer {
     }
     stopCount(){
         this.state = 0;
-        document.getElementById('close-button').addEventListener('click',function(){
+        var closeButtonElement = document.getElementById('close-button');
+        closeButtonElement.addEventListener('click',function(){
             document.getElementById('modal-base').style.display = "none";
     
         });
+        closeButtonElement.style.visibility = 'visible';
     }
     printCount(second,flag){
         var self = this;

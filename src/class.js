@@ -39,6 +39,13 @@ class Timer {
                         console.log('残り' + String(study));
                         if(study === 0){
                             clearInterval(timer);
+                            let dic = {};
+                            if(flag){
+                                dic['body'] = '勉強時間が終了しました。'
+                            }else{
+                                dic['body'] = '休憩時間が終了しました。'
+                            }
+                            let n = new Notification('通知',dic);
                             resolve();
                         }
                     }

@@ -1,7 +1,6 @@
 body{
     background : url(../../picture/green.jpg) center/cover;
     background-size : auto;
-    color : white;
 }
 #modal-base {
     color : black;

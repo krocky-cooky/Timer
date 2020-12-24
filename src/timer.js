@@ -14,6 +14,7 @@ var timerStorage = {
         localStorage.setItem(STORSGE_KEY,JSON.stringify(timer));
         timerStorage.uid++;
     },
+
 };
 
 var timerList = [];
@@ -51,6 +52,7 @@ var timerList = [];
         var rest_td = document.createElement('td');
         var button_td = document.createElement('td');
         var button = document.createElement('button');
+        var remove_button = document.createElement('button');
         var text = String(id);
         button.id = text;
         button.attr = 1;
@@ -64,8 +66,13 @@ var timerList = [];
         button.appendChild(
             document.createTextNode('開始')
         );
+        remove_button.appendChild(
+            document.createTextNode('削除')
+        )
         button.classList.add('btn','btn-primary');
+        remove_button.classList.add('btn','btn-danger');
         button_td.appendChild(button);
+        button_td.appendChild(remove_button);
         new_tr.appendChild(study_td);
         new_tr.appendChild(rest_td);
         new_tr.appendChild(button_td);
@@ -77,7 +84,22 @@ var timerList = [];
             document.getElementById('modal-base').style.display = "block";
             this.attr = 0;
             
+        });
+        
+        remove_button.addEventListener('click',function(){
+            timerList.splice(Number(this.id),1);
+            var parent = document.getElementById('study-rest-time');
+            var child = parent.childNodes[Number(this.id)];
+            parent.removeChild(child);
+            for(var i = 0; i < timerList.length; ++i){
+                timerList[i].id = i;
+            }
+            timerStorage.save(timerList);
+            
+
+
         })
+        
     }
 
     function createInstance(study, rest) {
@@ -88,7 +110,7 @@ var timerList = [];
         var timer = new Timer(num_stu,num_res,id);
         timerList.push(timer);
         timerStorage.save(timerList);
-        console.log(timer.getTime());
+        console.log(timerList)
         appendTable(num_stu,num_res,id);
 
     }
@@ -112,10 +134,12 @@ var timerList = [];
 
     document.getElementById('confirm-button').addEventListener('click',function(e){
         e.preventDefault();
+        /*
         var n = new Notification('hello',{
             body : 'こんな感じの通知です',
             
         });
+        */
         createButton();
         console.log('event');
     },false);

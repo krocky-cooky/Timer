@@ -18,6 +18,7 @@ var timerStorage = {
 };
 
 var timerList = [];
+var remove_button_list = [];
 
 
 (function () {
@@ -54,8 +55,11 @@ var timerList = [];
         var button = document.createElement('button');
         var remove_button = document.createElement('button');
         var text = String(id);
+        var timer = timerList[id];
         button.id = text;
         button.attr = 1;
+        remove_button.id = text;
+        
         
         study_td.appendChild(
             document.createTextNode(String(study) + '分')
@@ -78,27 +82,35 @@ var timerList = [];
         new_tr.appendChild(button_td);
         document.getElementById('study-rest-time').appendChild(new_tr);
         button.addEventListener('click',function(){
-           
-            timerList[Number(this.id)].setTimer();
-            timerList[Number(this.id)].startCount();
+            console.log(timer);
+           var tmp = timer;
+            tmp.setTimer();
+            tmp.startCount();
             document.getElementById('modal-base').style.display = "block";
             this.attr = 0;
             
         });
         
         remove_button.addEventListener('click',function(){
+            console.log(this.id);
             timerList.splice(Number(this.id),1);
+            remove_button_list.splice(Number(this.id),1);
             var parent = document.getElementById('study-rest-time');
             var child = parent.childNodes[Number(this.id)];
             parent.removeChild(child);
             for(var i = 0; i < timerList.length; ++i){
                 timerList[i].id = i;
             }
+            for(var i = 0;i < remove_button_list.length; ++i){
+                remove_button_list[i].id = String(i);
+            }
+
             timerStorage.save(timerList);
             
 
 
-        })
+        });
+        remove_button_list.push(remove_button);
         
     }
 

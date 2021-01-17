@@ -83,6 +83,7 @@ class Timer {
         var closeButtonElement = document.getElementById('close-button');
         closeButtonElement.addEventListener('click',function(){
             document.getElementById('modal-base').style.display = "none";
+            this.style.visibility = "hidden";
     
         });
         closeButtonElement.style.visibility = 'visible';

@@ -5,9 +5,12 @@
   "main": "index.js",
   "scripts": {
     "start": "electron .",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder",
+    "build": "node electron-builder --mac --x64"
   },
-  "author": "",
+  "author": "takuo kuroki",
   "license": "ISC",
   "devDependencies": {
     "electron": "^10.1.2",
@@ -16,5 +19,15 @@
   "dependencies": {
     "electron-packager": "^15.2.0",
     "extract-zip": "^2.0.1"
+  },
+  "build": {
+    "productName": "Study Timer",
+    "appId": "org.study_timer.desktop",
+    "mac": {
+      "category": "public.app-category.social-networking"
+    },
+    "files":[
+      "dist/electron/**/*"
+    ]
   }
 }

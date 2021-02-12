@@ -6,13 +6,13 @@ var timerStorage = {
             localStorage.getItem(STORSGE_KEY) || '[]'
         )
         this.uid = timers.length;
-        console.log(this.uid);
+        //console.log(this.uid);
         return timers;
     },
 
     save: function(timer){
         localStorage.setItem(STORSGE_KEY,JSON.stringify(timer));
-        timerStorage.uid++;
+        timerStorage.uid = timer.length;
     },
 
 };
@@ -83,7 +83,7 @@ var remove_button_list = [];
         document.getElementById('study-rest-time').appendChild(new_tr);
         button.addEventListener('click',function(){
             console.log(timer);
-           var tmp = timer;
+            var tmp = timer;
             tmp.setTimer();
             tmp.startCount();
             document.getElementById('modal-base').style.display = "block";
@@ -153,6 +153,5 @@ var remove_button_list = [];
         });
         */
         createButton();
-        console.log('event');
     },false);
 })();
